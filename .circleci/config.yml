@@ -10,14 +10,16 @@ jobs:
     steps:
       - checkout
       - python/install-packages:
-         pkg-manager: pip
+          pkg-manager: pipenv
       - run:
-         name: Run tests
-         command: python -m pytest
+          name: Run tests
+          command: pipenv run python manage.py test
+      - store_test_results:
+          path: test-results
       - persist_to_workspace:
-         root: ~/project
-         paths:
-           - .
+          root: ~/project
+          paths:
+            - .
 workflows:
   build_test_deploy:
     jobs:
