@@ -9,6 +9,7 @@ jobs:
     docker:
       - image: cimg/python:3.10.1
     resource_class: small
+    parallelism: 4
     steps:
       - checkout
       - python/install-packages:
@@ -40,4 +41,4 @@ workflows:
             - build_and_test # only deploy if the build_and_test job has completed
           filters:
             branches:
-              only: master # only deploy when on main  
+              only: main # only deploy when on main  
